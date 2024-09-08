@@ -24,22 +24,23 @@ export async function GET(request: Request) {
   await dbConnect();
 
   try {
+    console.log('Inside here!')
     const { searchParams } = new URL(request.url);
     const queryParam = {
       username: searchParams.get('username'),
     };
     const result = UsernameQuerySchema.safeParse(queryParam);
-    console.log(result);
+    console.log('Result', result);
 
     if (!result.success) {
       const usernameError = result.error.format().username?._errors || [];
+      console.log('Error 1');
       return Response.json(
         {
           success: false,
-          error:
-            usernameError.length > 0
-              ? usernameError.join(', ')
-              : 'Invalid query parameters',
+          message: usernameError.length > 0
+          ? usernameError.join(', ')
+          : 'Invalid query parameters',
         },
         { status: 400 }
       );
@@ -54,6 +55,7 @@ export async function GET(request: Request) {
     });
 
     if (verifiedUser) {
+      console.log('Error 2')
       return Response.json(
         {
           message: 'Username is not availible!',
@@ -64,6 +66,7 @@ export async function GET(request: Request) {
         }
       );
     }
+    console.log('Reached Till Here!')
     return Response.json(
       {
         message: 'Username is availible!',
