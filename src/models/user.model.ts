@@ -17,13 +17,13 @@ const MessageSchema: Schema<Message> = new Schema({
   },
 });
 
-export interface User {
-  username: String;
-  email: String;
-  password: String;
-  verifyCode: String;
+export interface User extends Document {
+  username: string;
+  email: string;
+  password: string;
+  verifyCode: string;
   verifyCodeExpiry: Date;
-  isVerified: Boolean;
+  isVerified: boolean;
   isAcceptingMessage: boolean;
   messages: Message[];
 }
