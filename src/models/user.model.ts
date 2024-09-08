@@ -21,7 +21,7 @@ export interface User {
   username: String;
   email: String;
   password: String;
-  verifyCode: Number;
+  verifyCode: String;
   verifyCodeExpiry: Date;
   isVerified: Boolean;
   isAcceptingMessage: boolean;
