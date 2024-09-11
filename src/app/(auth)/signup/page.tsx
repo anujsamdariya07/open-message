@@ -80,11 +80,16 @@ const page = () => {
         toast({
           title: 'Error',
           description: 'Failed to sign up',
+          variant: 'destructive'
         });
       } else {
         toast({
           title: 'Success',
           description: response.data.message,
+          style: {
+            backgroundColor: 'white',
+            color: 'black',
+          }
         });
 
         router.replace(`/verify/${username}`);
@@ -98,6 +103,10 @@ const page = () => {
         title: 'Error',
         description: errorMessage ?? 'Failed to sign up',
         variant: 'destructive',
+        style: {
+          backgroundColor: 'white',
+          color: 'black',
+        }
       });
       setIsSubmitting(false);
     }
@@ -178,7 +187,7 @@ const page = () => {
                   </FormItem>
                 )}
               />
-              <Button type='submit' className='bg-black text-white font-semibold' disabled={isSubmitting}>
+              <Button type='submit' className='bg-black text-white font-semibold hover:text-black hover:border-black hover:border-2' disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
                     <Loader2 className='mr-2 h-4 w-4 animate-spin' />{' '}

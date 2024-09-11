@@ -48,6 +48,7 @@ const VerifyAccount = () => {
         description: response.data.message,
         style: {
           color: 'black',
+          backgroundColor: 'white'
         },
       });
       router.replace('/sign-in');
